@@ -29,7 +29,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="#FFFFFF"
-        android:hint="Kullanıcı Adı"
+        android:hint="Mail"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF" />
 
