@@ -11,8 +11,11 @@ import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class FeedActivity : AppCompatActivity() {
+    private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var movieRecyclerView: RecyclerView
     private val allMovies: MutableList<Movie> = mutableListOf()
@@ -20,6 +23,25 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    // Home ekranına gitmek için gerekli işlemleri yapın
+                    true
+                }
+                R.id.search -> {
+                    // Search ekranına gitmek için gerekli işlemleri yapın
+                    true
+                }
+                R.id.person -> {
+                    // Profile ekranına gitmek için gerekli işlemleri yapın
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Initialize RecyclerView
         movieRecyclerView = findViewById(R.id.movieRecyclerView)

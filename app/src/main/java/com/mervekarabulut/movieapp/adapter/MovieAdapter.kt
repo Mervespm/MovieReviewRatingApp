@@ -1,5 +1,6 @@
 package com.mervekarabulut.movieapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mervekarabulut.movieapp.R
 import com.mervekarabulut.movieapp.model.Movie
+import com.mervekarabulut.movieapp.view.MovieDetailsActivity
 
 class MovieAdapter(private var movies: List<Movie>) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -51,6 +53,18 @@ class MovieAdapter(private var movies: List<Movie>) :
                 .placeholder(R.drawable.placeholder_image)
                 .into(moviePosterImageView)
         }
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val movie = movieList[position]
+                    val intent = Intent(itemView.context, MovieDetailsActivity::class.java)
+                    intent.putExtra("movie", movie)
+                    itemView.context.startActivity(intent)
+                }
+            }
+        }
+
     }
 }
 
