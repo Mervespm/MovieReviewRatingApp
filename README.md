@@ -1,4 +1,4 @@
-# MovieReviewRatingApp
+# CineCritique
 CineCritique, film severlerin favori filmlerini inceleyip derecelendirme yapabileceği bir mobil uygulamadır. Kullanıcılar, TMDb API'sini kullanarak filmleri arayabilir, inceleyebilir ve puanlayabilir. Ayrıca, diğer kullanıcılarla film izlemek için eşleşme istekleri oluşturabilirler.
 
 Özellikler
