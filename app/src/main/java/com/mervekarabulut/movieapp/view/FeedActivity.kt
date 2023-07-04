@@ -1,5 +1,6 @@
 package com.mervekarabulut.movieapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +37,8 @@ class FeedActivity : AppCompatActivity() {
                     true
                 }
                 R.id.person -> {
-                    // Profile ekranına gitmek için gerekli işlemleri yapın
+                    val intent = Intent(this, UserProfileActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
