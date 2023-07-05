@@ -47,4 +47,41 @@
         android:textColor="@android:color/black"
         android:padding="16dp" />
 
+    <!-- Rating bar -->
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="0" />
+
+    <!-- Comment input field -->
+    <EditText
+        android:id="@+id/commentEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your comment"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:gravity="start|top"
+        android:padding="16dp" />
+
+    <!-- Submit button -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Submit" />
+
+    <!-- See Other Comments button -->
+    <Button
+        android:id="@+id/btnSeeOtherComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="See Other Comments" />
+
 </LinearLayout>
