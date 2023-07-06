@@ -5,14 +5,15 @@
     android:background="@drawable/background_image">
 
     <!-- Movie poster -->
+
+    <!-- Movie title -->
     <ImageView
         android:id="@+id/moviePosterImageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_image" />
 
-    <!-- Movie title -->
     <TextView
         android:id="@+id/movieTitleTextView"
         android:layout_width="match_parent"
@@ -55,11 +56,6 @@
         android:text="Add Comment" />
 
     <!-- See Other Comments button -->
-    <Button
-        android:id="@+id/btnSeeOtherComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="See Other Comments" />
+
 
 </LinearLayout>
