@@ -33,7 +33,8 @@ class FeedActivity : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    // Search ekranına gitmek için gerekli işlemleri yapın
+                    val intent = Intent(this, CommentList::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.person -> {

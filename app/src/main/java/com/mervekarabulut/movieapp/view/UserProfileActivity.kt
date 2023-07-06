@@ -5,11 +5,15 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.mervekarabulut.movieapp.R
 import com.mervekarabulut.movieapp.databinding.ActivityUserProfileBinding
 
 class UserProfileActivity : AppCompatActivity() {
@@ -17,6 +21,7 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storageReference: StorageReference
     private lateinit var binding : ActivityUserProfileBinding
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     private var selectedImageUri: Uri? = null
 
@@ -24,6 +29,7 @@ class UserProfileActivity : AppCompatActivity() {
         uri?.let {
             selectedImageUri = it
             binding.imageView.setImageURI(selectedImageUri)
+            uploadProfileImage()
         }
     }
 
@@ -35,8 +41,32 @@ class UserProfileActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    val intent = Intent(this, FeedActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.search -> {
+                    val intent = Intent(this, CommentList::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.person -> {
+                    val intent = Intent(this, UserProfileActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
 
         loadProfileDetails()
 
@@ -53,6 +83,7 @@ class UserProfileActivity : AppCompatActivity() {
     }
     private fun loadProfileDetails() {
         val userId = auth.currentUser?.uid
+        val email = auth.currentUser?.email
 
         if (userId != null) {
             val userDocument = firestore.collection("Users").document(userId)
@@ -60,13 +91,25 @@ class UserProfileActivity : AppCompatActivity() {
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.exists()) {
                         val fullName = documentSnapshot.getString("fullName")
+                        val profileImageUrl = documentSnapshot.getString("profileImageUrl")
                         binding.textView.text = fullName
+                        binding.email.text = email
+                        // Load and display the profile image using an image loading library
+                        Glide.with(this)
+                            .load(profileImageUrl)
+                            .into(binding.imageView)
                     }
                 }
                 .addOnFailureListener { exception ->
                     // Handle the failure case
                 }
+
+
         }
+
+
+
+
     }
 
     private fun openGallery() {
